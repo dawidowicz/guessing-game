@@ -17,6 +17,7 @@ version = "1.0-SNAPSHOT"
 
 apply {
     plugin("kotlin")
+    plugin("idea")
 }
 
 val kotlin_version: String by extra
