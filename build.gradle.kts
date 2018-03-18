@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.gradle.jvm.tasks.Jar
 
 buildscript {
     var kotlin_version: String by extra
@@ -8,16 +9,21 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(kotlinModule("gradle-plugin", kotlin_version))
+        classpath(kotlin("gradle-plugin", kotlin_version))
     }
 }
 
 group = "koty"
 version = "1.0-SNAPSHOT"
 
-apply {
-    plugin("kotlin")
-    plugin("idea")
+plugins {
+    idea
+    application
+    kotlin("jvm") version "1.2.20"
+}
+
+application {
+    mainClassName = "koty.MainKt"
 }
 
 val kotlin_version: String by extra
@@ -27,9 +33,26 @@ repositories {
 }
 
 dependencies {
-    compile(kotlinModule("stdlib-jdk8", kotlin_version))
+    compile(kotlin("stdlib-jdk8", kotlin_version))
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+val fatJar = task("fatJar", type = Jar::class) {
+    baseName = project.name
+    manifest {
+        attributes["Implementation-Title"] = "Guessing Game"
+        attributes["Implementation-Version"] = version
+        attributes["Main-Class"] = "koty.MainKt"
+    }
+    from(configurations.runtime.map({ if (it.isDirectory) it else zipTree(it) }))
+    with(tasks["jar"] as CopySpec)
+}
+
+tasks {
+    "build" {
+        dependsOn(fatJar)
+    }
 }
