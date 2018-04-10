@@ -1,4 +1,4 @@
-package koty
+package koty.calc
 
 
 fun main(xxx: Array<String>) {

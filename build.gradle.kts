@@ -34,6 +34,20 @@ repositories {
 
 dependencies {
     compile(kotlin("stdlib-jdk8", kotlin_version))
+
+    testCompile("org.junit.platform:junit-platform-console:1.0.3")
+    testCompile("org.jetbrains.spek:spek-api:1.1.5") {
+        exclude("org.jetbrains.kotlin")
+    }
+    testCompile("org.jetbrains.spek:spek-data-driven-extension:1.1.5")
+    testCompile("io.kotlintest:kotlintest:2.0.7")
+    testCompile("org.mockito:mockito-core:2.13.0")
+    testCompile("com.nhaarman:mockito-kotlin:1.5.0")
+
+    testCompile("org.jetbrains.spek:spek-junit-platform-engine:1.1.5") {
+        exclude("org.junit.platform")
+        exclude("org.jetbrains.kotlin")
+    }
 }
 
 tasks.withType<KotlinCompile> {
