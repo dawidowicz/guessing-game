@@ -10,17 +10,33 @@ fun main(xxx: Array<String>) {
     println("podaj drugą liczbę")
     input = readLine() !!
     val number2 = input.toInt()
+    var result = 0
     if (operator == "+") {
-        println("wynik: " + (number1 + number2))
+        result = number1 + number2
+        println(result)
     } else if (operator == "-") {
-        val result = number1 - number2
+        result = number1 - number2
         println(result)
     } else if (operator == "/") {
-        val result = number1 / number2
+        result = number1 / number2
         println(result)
     } else if (operator == "*") {
-        val result = number1 * number2
+        result = number1 * number2
         println("wynik: " + result)
+    }
+    println("podaj rodzaj operacji: +, -, *, /")
+    val operator2 = readLine() !!
+    println("podaj trzecią liczbę")
+    input = readLine() !!
+    val number3 = input.toInt()
+    if (operator2 == "+") {
+        println("wynik: " + (result + number3))
+    } else if (operator2 == "-") {
+      println("wynik: " + (result - number3))
+    } else if (operator2 == "/") {
+       println("wynik: " + (result / number3))
+    } else if (operator2 == "*") {
+        println("wynik: " + (result * number3))
     }
 }
 
