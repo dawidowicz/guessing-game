@@ -38,7 +38,7 @@ internal class kalkulatorTest : Spek({
                 data("-", "/", 21, 4),
                 data("*", "+", 72, 77),
                 data("*", "-", 72, 67),
-                data("*", "*", 72, 3600),
+                data("*", "*", 72, 360),
                 data("*", "/", 72, 14),
                 data("/", "+", 8, 13),
                 data("/", "-", 8, 3),
@@ -57,15 +57,15 @@ internal class kalkulatorTest : Spek({
             val output = out.toString().split("\r\n")
 
             it("Should ask for first number") {
-                output[0] shouldEqual "Podaj pierwszą liczbę:"
+                output[0] shouldEqual "Podaj pierwszą liczbę"
             }
 
             it("Should ask for first operator") {
-                output[1] shouldEqual "Podaj rodzaj operacji: +, -, *, /:"
+                output[1] shouldEqual "Podaj rodzaj operacji: +, -, *, /"
             }
 
             it("Should ask for second number") {
-                output[2] shouldEqual "Podaj drugą liczbę:"
+                output[2] shouldEqual "Podaj drugą liczbę"
             }
 
             it("Should print partial result") {
@@ -73,11 +73,11 @@ internal class kalkulatorTest : Spek({
             }
 
             it("Should ask for second operator") {
-                output[4] shouldEqual "Podaj rodzaj operacji: +, -, *, /:"
+                output[4] shouldEqual "Podaj rodzaj operacji: +, -, *, /"
             }
 
             it("Should ask for third number") {
-                output[5] shouldEqual "Podaj trzecią liczbę:"
+                output[5] shouldEqual "Podaj trzecią liczbę"
             }
 
             it("Should print final result") {
